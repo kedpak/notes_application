@@ -9,17 +9,21 @@ const yargs = require('yargs');
 
 const argv = yargs.argv;
 const command = process.argv[2];
+
+
 console.log('Commmand: ', command);
 console.log('Process: ', process.argv);
 console.log('yargs Prcoess: ', argv)
+
+
 if (command === 'add') {
-  console.log('add the stuff');
+  notes.addNote(argv.title, argv.body);
 } else if (command === 'list'){
-  console.log('this is list');
+  notes.getAll();
 } else if (command === 'read') {
-  console.log('get note back');
+  notes.readNote(argv.title);
 } else if (command === 'remove') {
-  console.log('removed note');
+  notes.removeNote(argv.title);
 }
 else {
   console.log('Command does not exist');
