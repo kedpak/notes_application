@@ -17,7 +17,13 @@ console.log('yargs Prcoess: ', argv)
 
 
 if (command === 'add') {
-  notes.addNote(argv.title, argv.body);
+  let note = notes.addNote(argv.title, argv.body);
+  if (note !== undefined) {
+    console.log(note);
+  }
+  else {
+    console.log('This note is already in use');
+  }
 } else if (command === 'list'){
   notes.getAll();
 } else if (command === 'read') {
