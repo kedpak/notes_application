@@ -36,7 +36,11 @@ let addNote = (title, body) => {
 
 // lists all saved notes
 let getAll = () => {
-  console.log('Getting all notes')
+  let notes = fetchNotes();
+  notes.map((obj) => {
+    console.log('---Note---');
+    console.log(`Title: ${obj.title}  Body: ${obj.body}`);
+  })
 }
 
 // reads note based on title
