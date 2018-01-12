@@ -47,7 +47,16 @@ let readNote = (title) => {
 
 // removes note based on title
 let removeNote = (title) => {
-  console.log('Remove ', title)
+  let notes = fetchNotes();
+  console.log(JSON.stringify(fetchNotes()));
+
+  let newNotes = notes.filter((note) => note.title !== title);
+  if (notes.length > newNotes.length) {
+    console.log(`Deleting ${title}`);
+    saveNotes(newNotes);
+  } else {
+    console.log('Note does not exist!');
+  }
 }
 
 module.exports = {
