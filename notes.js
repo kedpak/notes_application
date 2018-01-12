@@ -11,7 +11,6 @@ let fetchNotes = () => {
   } catch (e) {
     return [];
   }
-
 }
 
 // Writes list of objects into json file
@@ -42,15 +41,23 @@ let getAll = () => {
 
 // reads note based on title
 let readNote = (title) => {
-  console.log('Read ', title);
+  let notes = fetchNotes();
+  let note = notes.filter((note) => note.title === title);
+
+  for (let i = 0; i < notes.length; i++) {
+    if (notes[i].title === title) {
+      console.log(`Title: ${note[0].title} Body: ${note[0].body}`);
+      return;
+    }
+  }
+  console.log('Note not found!');
 }
 
 // removes note based on title
 let removeNote = (title) => {
   let notes = fetchNotes();
-  console.log(JSON.stringify(fetchNotes()));
-
   let newNotes = notes.filter((note) => note.title !== title);
+
   if (notes.length > newNotes.length) {
     console.log(`Deleting ${title}`);
     saveNotes(newNotes);
